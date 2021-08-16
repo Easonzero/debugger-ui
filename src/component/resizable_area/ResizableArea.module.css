@@ -13,25 +13,25 @@
 }
 
 .resizeableAreaRow {
-    composes: resizeable; 
+    composes: resizeable;
     display: grid;
     grid-template-rows: 1fr 12px 1fr;
 }
 
 .resizeableAreaColumn {
-    composes: resizeable; 
+    composes: resizeable;
     display: grid;
     grid-template-columns: 1fr 12px 1fr;
 }
 
 .resizeableHiddenAreaRow {
-    composes: resizeable; 
+    composes: resizeable;
     display: grid;
     grid-template-rows: 1fr auto;
 }
 
 .resizeableHiddenAreaColumn {
-    composes: resizeable; 
+    composes: resizeable;
     display: grid;
     grid-template-columns: 1fr auto;
 }

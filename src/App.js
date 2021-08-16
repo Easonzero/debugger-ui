@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./App.css";
 import { ResizableArea } from "./component/resizable_area/ResizableArea";
 import { Button } from "./component/button/Button";
 import { TabList } from "./component/tab/Tab";
+import { MainSwitcher, DebuggerSwitcher } from "./page";
+import { MainTabs } from "./types"
+import { changeMainPage } from "./app"
 
 function App() {
-    const [area1Focus, setArea1Focus] = useState(0);
-    const [area2Focus, setArea2Focus] = useState(-1);
+    const [mainFocus, setMainFocus] = useState(0);
+    const [debuggerFocus, setDebuggerFocus] = useState(-1);
     const [showDebugger, setShowDebugger] = useState(false);
+    const dispatch = useDispatch();
+
     return (
         <div className="App">
             <div className="AppHeader">
@@ -15,30 +21,53 @@ function App() {
                 <Button bold children="Attach" />
             </div>
             <ResizableArea focus={showDebugger}>
-                <div className="BorderArea"> 
-                    <TabList tabs={[
-                        { focus: area1Focus==0, label: 'editor', onClick: () => setArea1Focus(0) },
-                        { focus: area1Focus==1, label: 'topology', onClick: () => setArea1Focus(1) },
-                    ]} />
-                </div>
-                <div className={showDebugger ? "BorderArea":"Area"}> 
-                    <TabList 
+                <div className="BorderArea">
+                    <TabList
+                        focus={mainFocus}
                         tabs={[
-                            {focus: area2Focus==0, label: 'debugger', onClick: () => {
-                                setShowDebugger(true);
-                                setArea2Focus(0);
-                            }}
+                            {
+                                label: MainTabs[0],
+                                onClick: () => setMainFocus(0) & dispatch(changeMainPage(MainTabs[0])),
+                            },
+                            {
+                                label: MainTabs[1],
+                                onClick: () => setMainFocus(1) & dispatch(changeMainPage(MainTabs[1])),
+                            },
+                        ]}
+                    />
+                    <div className="body">
+                        <MainSwitcher />
+                    </div>
+                </div>
+                <div className={showDebugger ? "BorderArea" : "Area"}>
+                    <TabList
+                        focus={debuggerFocus}
+                        tabs={[
+                            {
+                                label: "debugger",
+                                onClick: () => 
+                                    setShowDebugger(true) & setDebuggerFocus(0)
+                                ,
+                            },
                         ]}
                         children={
-                            showDebugger && <button className='tabClose' onClick={
-                                ()=>{
-                                    setShowDebugger(false);
-                                    setArea2Focus(-1);
-                                }   
-                            }>Close</button>
+                            showDebugger && (
+                                <button
+                                    className="tabClose"
+                                    onClick={() => 
+                                        setShowDebugger(false) & setDebuggerFocus(-1)
+                                    }
+                                >
+                                    Close
+                                </button>
+                            )
                         }
                     />
-                    { showDebugger && <section className="body" /> }
+                    {showDebugger && (
+                        <div className="body">
+                            <DebuggerSwitcher />
+                        </div>
+                    )}
                 </div>
             </ResizableArea>
         </div>

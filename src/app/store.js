@@ -1,13 +1,5 @@
-import { configureStore, createAction } from "@reduxjs/toolkit";
-
-const BrowserWidthChanged = "BROWSER_WIDTH_CHANGED";
-const browserWidthChanged = createAction(BrowserWidthChanged, (isSmall) => {
-    return {
-        payload: {
-            isSmall,
-        },
-    };
-});
+import { configureStore } from "@reduxjs/toolkit";
+import { BrowserWidthChanged, ChangeDebuggerPage, ChangeMainPage } from './actor';
 
 export const store = configureStore({
     reducer: {
@@ -19,10 +11,23 @@ export const store = configureStore({
                     return state;
             }
         },
+        main: (state = '', action) => {
+            switch (action.type) {
+                case ChangeMainPage:
+                    return action.payload.page
+                default:
+                    return state;
+            }
+        },
+        debugger: (state = '', action) => {
+            switch (action.type) {
+                case ChangeDebuggerPage:
+                    return action.payload.page
+                default:
+                    return state;
+            }
+        },
     },
 });
 
-const z = (evt) => store.dispatch(browserWidthChanged(evt.matches));
-const maxWidthMediaQuery = window.matchMedia("(max-width: 1600px)");
-z(maxWidthMediaQuery);
-maxWidthMediaQuery.addListener(z);
+

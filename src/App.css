@@ -41,16 +41,12 @@
 .tabClose {
     border: 1px solid #dedede;
     border-right: none;
-    background-color: #D4DFE6;
+    background-color: #d4dfe6;
     cursor: pointer;
     line-height: 1.5em;
 }
 
 .body {
-    flex-grow:1;
-    overflow: scroll;
-    padding: 0.5em;
-    border: 1px solid #dedede;
-    border-top: none;
-    background-color: #f9ffff;
+    flex-grow: 1;
+    overflow: hidden;
 }

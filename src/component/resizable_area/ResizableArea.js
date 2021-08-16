@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import Split from "split-grid";
 import styles from "./ResizableArea.module.css";
@@ -31,17 +31,19 @@ export function ResizableArea(props) {
         return () => split.destroy();
     }, [orientation, props.focus]);
 
-    const gridStyle = props.focus ? GRID_STYLE[orientation] : HIDDEN_GRID_STYLE[orientation];
+    const gridStyle = props.focus
+        ? GRID_STYLE[orientation]
+        : HIDDEN_GRID_STYLE[orientation];
     const [handleOuterStyle, handleInnerStyle] = HANDLE_STYLES[orientation];
 
     return (
         <div ref={grid} className={gridStyle}>
             {props.children[0]}
-            { props.focus &&
+            {props.focus && (
                 <div ref={dragHandle} className={handleOuterStyle}>
                     <span className={handleInnerStyle}>⣿</span>
                 </div>
-            }
+            )}
             {props.children[1]}
         </div>
     );
