@@ -4,10 +4,13 @@ import Graph from "react-graph-vis";
 const options = {
     autoResize: true,
     layout: {
-        hierarchical: false
+        hierarchical: true
     },
     edges: {
         color: "#ffffff"
+    },
+    physics: {
+        enabled: false
     }
 }
 
