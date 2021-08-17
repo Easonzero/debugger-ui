@@ -10716,6 +10716,11 @@
   "resolved" "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.0.tgz"
   "version" "1.0.0"
 
+"toml@^3.0.0":
+  "integrity" "sha512-y/mWCZinnvxjTKYhJ+pYxwD0mRLVvOtdS2Awbgxln6iEnt4rk0yBxeSBHkGJcPucRiG0e55mwWp+g/05rsrd6w=="
+  "resolved" "https://registry.npmjs.org/toml/-/toml-3.0.0.tgz"
+  "version" "3.0.0"
+
 "topo@2.x.x":
   "integrity" "sha1-zVYVdSU5BXwNwEkaYhw7xvvh0YI="
   "resolved" "https://registry.npmjs.org/topo/-/topo-2.0.2.tgz"

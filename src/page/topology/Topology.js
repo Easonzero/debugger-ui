@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import Graph from "react-graph-vis";
+import { selectDescp } from "./TopologySlice";
 
 const options = {
     autoResize: true,
@@ -15,10 +17,6 @@ const options = {
 };
 
 export const Topology = () => {
-    const [state, setState] = useState({
-        nodes: [],
-        edges: [],
-    });
-
-    return <Graph graph={state} options={options} />;
+    let descp = useSelector(selectDescp);
+    return <Graph graph={descp} options={options} />;
 };

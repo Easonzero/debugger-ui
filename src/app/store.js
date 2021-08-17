@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import * as actor from "./actor";
 import editor from "../page/editor/EditorSlice";
+import topology from "../page/topology/TopologySlice";
 
 export const store = configureStore({
     reducer: {
         editor,
+        topology,
         isSmall: (state = false, action) => {
             switch (action.type) {
                 case actor.BrowserWidthChanged:
