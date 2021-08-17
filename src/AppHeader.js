@@ -1,12 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./AppHeader.module.css";
 import { Button } from "./component/button/Button";
 import toml from "toml";
 import { selectEditorChanged } from "./page/editor/EditorSlice";
 import { parse } from "./parser";
+import { update } from "./page/topology/TopologySlice";
 
 export const AppHeader = () => {
+    const dispatch = useDispatch();
     const stage = useSelector((state) => state.stage);
     const content = useSelector(selectEditorChanged);
     switch (stage) {
@@ -20,9 +22,10 @@ export const AppHeader = () => {
                     <div className={styles.AppHeaderSet}>
                         <Button bold children="Check" onClick={ () => {
                             try {
-                                parse(toml.parse(content));
+                                dispatch(update(parse(toml.parse(content))));
                             } catch (e) {
                                 // TODO: const { line, column, message } = e
+                                console.log(e.line, e.column, e.message)
                             }
                         } } />
                     </div>
