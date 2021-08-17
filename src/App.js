@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
 import { ResizableArea } from "./component/resizable_area/ResizableArea";
-import { Button } from "./component/button/Button";
 import { TabList } from "./component/tab/Tab";
 import { MainSwitcher, DebuggerSwitcher } from "./page";
-import { MainTabs } from "./types"
-import { changeMainPage } from "./app"
+import { MainTabs } from "./types";
+import { changeMainPage } from "./app";
+import { AppHeader } from "./AppHeader";
+import { save } from "./page/editor/EditorSlice";
 
 function App() {
     const [mainFocus, setMainFocus] = useState(0);
@@ -16,10 +17,7 @@ function App() {
 
     return (
         <div className="App">
-            <div className="AppHeader">
-                <Button bold children="Launch" />
-                <Button bold children="Attach" />
-            </div>
+            <AppHeader />
             <ResizableArea focus={showDebugger}>
                 <div className="BorderArea">
                     <TabList
@@ -27,11 +25,16 @@ function App() {
                         tabs={[
                             {
                                 label: MainTabs[0],
-                                onClick: () => setMainFocus(0) & dispatch(changeMainPage(MainTabs[0])),
+                                onClick: () =>
+                                    setMainFocus(0) &
+                                    dispatch(changeMainPage(MainTabs[0])),
                             },
                             {
                                 label: MainTabs[1],
-                                onClick: () => setMainFocus(1) & dispatch(changeMainPage(MainTabs[1])),
+                                onClick: () =>
+                                    setMainFocus(1) &
+                                    dispatch(changeMainPage(MainTabs[1])) &
+                                    dispatch(save()),
                             },
                         ]}
                     />
@@ -45,17 +48,17 @@ function App() {
                         tabs={[
                             {
                                 label: "debugger",
-                                onClick: () => 
-                                    setShowDebugger(true) & setDebuggerFocus(0)
-                                ,
+                                onClick: () =>
+                                    setShowDebugger(true) & setDebuggerFocus(0),
                             },
                         ]}
                         children={
                             showDebugger && (
                                 <button
                                     className="tabClose"
-                                    onClick={() => 
-                                        setShowDebugger(false) & setDebuggerFocus(-1)
+                                    onClick={() =>
+                                        setShowDebugger(false) &
+                                        setDebuggerFocus(-1)
                                     }
                                 >
                                     Close

@@ -1,33 +1,41 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { BrowserWidthChanged, ChangeDebuggerPage, ChangeMainPage } from './actor';
+import * as actor from "./actor";
+import editor from "../page/editor/EditorSlice";
 
 export const store = configureStore({
     reducer: {
+        editor,
         isSmall: (state = false, action) => {
             switch (action.type) {
-                case BrowserWidthChanged:
+                case actor.BrowserWidthChanged:
                     return action.payload.isSmall;
                 default:
                     return state;
             }
         },
-        main: (state = '', action) => {
+        main: (state = "", action) => {
             switch (action.type) {
-                case ChangeMainPage:
-                    return action.payload.page
+                case actor.ChangeMainPage:
+                    return action.payload.page;
                 default:
                     return state;
             }
         },
-        debugger: (state = '', action) => {
+        debugger: (state = "", action) => {
             switch (action.type) {
-                case ChangeDebuggerPage:
-                    return action.payload.page
+                case actor.ChangeDebuggerPage:
+                    return action.payload.page;
+                default:
+                    return state;
+            }
+        },
+        stage: (state = "", action) => {
+            switch (action.type) {
+                case actor.ChangeStage:
+                    return action.payload.stage;
                 default:
                     return state;
             }
         },
     },
 });
-
-

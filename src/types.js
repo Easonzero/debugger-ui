@@ -3,10 +3,6 @@ export const Orientation = {
     Vertical: "vertical",
 };
 
-export const MainTabs = [
-    "editor", "topology"
-];
+export const MainTabs = ["editor", "topology"];
 
-export const DebuggerTabs = [
-    "empty",
-];
+export const DebuggerTabs = ["empty"];

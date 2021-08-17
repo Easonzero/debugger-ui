@@ -7,18 +7,6 @@
     justify-content: center;
 }
 
-.AppHeader {
-    display: flex;
-    justify-content: flex-start;
-    padding: 1.25em 0;
-    font-size: 12px;
-    width: 100%;
-}
-
-.AppHeader button:enabled {
-    cursor: pointer;
-}
-
 .Area {
     width: 100%;
     min-width: 0;

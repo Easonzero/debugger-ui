@@ -1,0 +1,19 @@
+.AppHeader {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1.25em 0;
+    font-size: 12px;
+    width: 100%;
+}
+
+.AppHeader button:enabled {
+    cursor: pointer;
+}
+
+.AppHeaderSet {
+    margin-right: 0.5em;
+}
+
+AppHeaderSet:last-child {
+    margin-right: 0;
+}

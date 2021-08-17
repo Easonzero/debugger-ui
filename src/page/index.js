@@ -5,21 +5,21 @@ import { Topology } from "./topology/Topology";
 import { Editor } from "./editor/Editor";
 
 export const MainSwitcher = () => {
-    const page = useSelector(state => state.main);
+    const page = useSelector((state) => state.main);
     switch (page) {
         case "topology":
-            return (<Topology />);
+            return <Topology />;
         case "editor":
-            return (<Editor />);
+            return <Editor />;
         default:
-            return null;
+            return <Editor />;
     }
 };
 
 export const DebuggerSwitcher = () => {
-    const page = useSelector(state => state.debugger);
+    const page = useSelector((state) => state.debugger);
     switch (page) {
         default:
-            return (<Empty />);
+            return <Empty />;
     }
 };
