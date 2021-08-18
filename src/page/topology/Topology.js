@@ -8,7 +8,8 @@ const options = {
     width: '100%',
     height: '100%',
     layout: {
-        hierarchical: true,
+        randomSeed: 0,
+        hierarchical: false,
     },
     edges: {
         color: "#ffffff",
