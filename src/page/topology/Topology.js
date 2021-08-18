@@ -22,5 +22,5 @@ const options = {
 export const Topology = () => {
     let descp = useSelector(selectDescp);
     let edges = descp.edges.map(edge=>{return {...edge}}); // workaround for graph-viz
-    return <Graph graph={ {nodes:descp.nodes, edges}} style={{height:'100%'}} options={options} />;
+    return <Graph graph={ {nodes: descp.nodes, edges}} style={{height:'100%'}} options={options} />;
 };

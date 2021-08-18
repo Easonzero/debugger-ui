@@ -18,6 +18,8 @@ function isOutput(graph, name) {
     return graph.outputs.hasOwnProperty(name)
 }
 
+
+
 function parseGraph(config, graph) {
     let nodes = {};
     let edges = [];
@@ -81,13 +83,13 @@ function parseGraph(config, graph) {
             let dot = config.counter;
             dots.push(dot);
             config.counter += 1;
-            for (const rx in related.rx) {
+            for (const rx of related.rx) {
                 edges.push({from:dot, to:rx, arrows: 'to'})
             }
-            for (const tx in related.tx) {
+            for (const tx of related.tx) {
                 edges.push({from:tx, to:dot, arrows: 'to'})
             }
-            for (const unknown in related.unknown) {
+            for (const unknown of related.unknown) {
                 edges.push({from:unknown, to:dot, arrows: ''})
             }
         } else {
