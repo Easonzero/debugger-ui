@@ -1,7 +1,6 @@
 .empty {
     height: 100%;
     width: 100%;
-    overflow: scroll;
     padding: 0.5em;
     border: 1px solid #dedede;
     border-top: none;
