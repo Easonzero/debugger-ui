@@ -4,5 +4,9 @@ export const Orientation = {
 };
 
 export const MainTabs = ["editor", "topology"];
+export const EDITOR = 0;
+export const TOPOLOGY = 1;
 
-export const DebuggerTabs = ["empty"];
+export const DebuggerTabs = ["empty", "error"];
+export const EMPTY = 0;
+export const ERROR = 1;

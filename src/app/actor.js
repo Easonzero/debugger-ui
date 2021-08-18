@@ -12,20 +12,27 @@ export const browserWidthChanged = createAction(
     }
 );
 
-export const ChangeDebuggerPage = "CHANGE_DEBUGGER_PAGE";
-export const changeDebuggerPage = createAction(ChangeDebuggerPage, (page) => {
+export const StoreDebuggerPage = "STORE_DEBUGGER_PAGE";
+export const storeDebuggerPage = createAction(StoreDebuggerPage, () => {
+    return {
+        payload: {},
+    };
+});
+
+export const RestoreDebuggerPage = "RESTORE_DEBUGGER_PAGE";
+export const restoreDebuggerPage = createAction(RestoreDebuggerPage, (focus) => {
     return {
         payload: {
-            page,
+            focus,
         },
     };
 });
 
 export const ChangeMainPage = "CHANGE_MAIN_PAGE";
-export const changeMainPage = createAction(ChangeMainPage, (page) => {
+export const changeMainPage = createAction(ChangeMainPage, (focus) => {
     return {
         payload: {
-            page,
+            focus,
         },
     };
 });

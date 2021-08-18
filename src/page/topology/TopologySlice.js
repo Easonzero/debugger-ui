@@ -6,11 +6,15 @@ export const topologySlice = createSlice({
         descp: {
             nodes: [],
             edges: [],
+            key: 0,
         },
     },
     reducers: {
         update: (state, descp) => {
-            state.descp = descp.payload;
+            state.descp = {
+                ...descp.payload,
+                key: state.descp.key + 1,
+            }
         },
     },
 });

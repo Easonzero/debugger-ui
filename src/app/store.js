@@ -2,11 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import * as actor from "./actor";
 import editor from "../page/editor/EditorSlice";
 import topology from "../page/topology/TopologySlice";
+import text from "../page/text/TextSlice";
+import { MainTabs, DebuggerTabs } from "../types";
 
 export const store = configureStore({
     reducer: {
         editor,
         topology,
+        text,
         isSmall: (state = false, action) => {
             switch (action.type) {
                 case actor.BrowserWidthChanged:
@@ -15,18 +18,20 @@ export const store = configureStore({
                     return state;
             }
         },
-        main: (state = "", action) => {
+        main: (state = { focus: 0, page: "" }, action) => {
             switch (action.type) {
                 case actor.ChangeMainPage:
-                    return action.payload.page;
+                    return { focus: action.payload.focus, page: MainTabs[action.payload.focus] };
                 default:
                     return state;
             }
         },
-        debugger: (state = "", action) => {
+        dbg: (state = { focus: -1, page: "" }, action) => {
             switch (action.type) {
-                case actor.ChangeDebuggerPage:
-                    return action.payload.page;
+                case actor.StoreDebuggerPage:
+                    return { focus: -1, page: state.page };
+                case actor.RestoreDebuggerPage:
+                    return { focus: 0, page: action.payload.focus >= 0 ? DebuggerTabs[action.payload.focus] : state.page };
                 default:
                     return state;
             }

@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Graph from "react-graph-vis";
 import { selectDescp } from "./TopologySlice";
+import Graph from "./VisGraph";
 
 const options = {
     autoResize: true,
+    width: '100%',
+    height: '100%',
     layout: {
         hierarchical: true,
     },
@@ -18,5 +20,6 @@ const options = {
 
 export const Topology = () => {
     let descp = useSelector(selectDescp);
-    return <Graph graph={descp} options={options} />;
+    let edges = descp.edges.map(edge=>{return {...edge}}); // workaround for graph-viz
+    return <Graph graph={ {nodes:descp.nodes, edges}} style={{height:'100%'}} options={options} />;
 };

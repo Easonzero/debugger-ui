@@ -1,39 +1,36 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import { ResizableArea } from "./component/resizable_area/ResizableArea";
 import { TabList } from "./component/tab/Tab";
 import { MainSwitcher, DebuggerSwitcher } from "./page";
-import { MainTabs } from "./types";
-import { changeMainPage } from "./app";
+import { changeMainPage, storeDebuggerPage, restoreDebuggerPage } from "./app";
 import { AppHeader } from "./AppHeader";
 import { save } from "./page/editor/EditorSlice";
+import { MainTabs, EDITOR, TOPOLOGY } from "./types";
 
 function App() {
-    const [mainFocus, setMainFocus] = useState(0);
-    const [debuggerFocus, setDebuggerFocus] = useState(-1);
-    const [showDebugger, setShowDebugger] = useState(false);
     const dispatch = useDispatch();
+    const main = useSelector(state=>state.main);
+    const dbg = useSelector(state=>state.dbg);
 
     return (
         <div className="App">
             <AppHeader />
-            <ResizableArea focus={showDebugger}>
+            <ResizableArea focus={dbg.focus >= 0}>
                 <div className="BorderArea">
                     <TabList
-                        focus={mainFocus}
+                        focus={main.focus}
                         tabs={[
                             {
-                                label: MainTabs[0],
+                                label: MainTabs[EDITOR],
                                 onClick: () =>
-                                    setMainFocus(0) &
-                                    dispatch(changeMainPage(MainTabs[0])),
+                                    dispatch(changeMainPage(EDITOR)),
                             },
                             {
-                                label: MainTabs[1],
+                                label: MainTabs[TOPOLOGY],
                                 onClick: () =>
-                                    setMainFocus(1) &
-                                    dispatch(changeMainPage(MainTabs[1])) &
+                                    dispatch(changeMainPage(TOPOLOGY)) &
                                     dispatch(save()),
                             },
                         ]}
@@ -42,23 +39,22 @@ function App() {
                         <MainSwitcher />
                     </div>
                 </div>
-                <div className={showDebugger ? "BorderArea" : "Area"}>
+                <div className={dbg.focus >= 0 ? "BorderArea" : "Area"}>
                     <TabList
-                        focus={debuggerFocus}
+                        focus={dbg.focus}
                         tabs={[
                             {
                                 label: "debugger",
                                 onClick: () =>
-                                    setShowDebugger(true) & setDebuggerFocus(0),
+                                    dispatch(restoreDebuggerPage(-1)),
                             },
                         ]}
                         children={
-                            showDebugger && (
+                            (dbg.focus >= 0) && (
                                 <button
                                     className="tabClose"
                                     onClick={() =>
-                                        setShowDebugger(false) &
-                                        setDebuggerFocus(-1)
+                                        dispatch(storeDebuggerPage())
                                     }
                                 >
                                     Close
@@ -66,7 +62,7 @@ function App() {
                             )
                         }
                     />
-                    {showDebugger && (
+                    {(dbg.focus >= 0) && (
                         <div className="body">
                             <DebuggerSwitcher />
                         </div>

@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Empty } from "./empty/Empty";
+import { Text } from "./text/Text";
 import { Topology } from "./topology/Topology";
 import { Editor } from "./editor/Editor";
 
 export const MainSwitcher = () => {
-    const page = useSelector((state) => state.main);
+    const page = useSelector((state) => state.main.page);
     switch (page) {
         case "topology":
             return <Topology />;
@@ -17,8 +18,10 @@ export const MainSwitcher = () => {
 };
 
 export const DebuggerSwitcher = () => {
-    const page = useSelector((state) => state.debugger);
+    const page = useSelector((state) => state.dbg.page);
     switch (page) {
+        case "error":
+            return <Text />;
         default:
             return <Empty />;
     }

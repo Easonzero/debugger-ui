@@ -14,15 +14,17 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-graph-vis": "^1.0.7",
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.3",
     "react-scripts": "^2.0.0",
     "rodemirror": "^1.6.3",
     "split-grid": "^1.0.11",
-    "toml": "^3.0.0"
+    "toml": "^3.0.0",
+    "vis-data": "^7.1.2",
+    "vis-network": "^9.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
