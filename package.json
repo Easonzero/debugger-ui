@@ -20,6 +20,7 @@
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.3",
     "react-scripts": "^2.0.0",
+    "reactjs-popup": "^2.0.5",
     "rodemirror": "^1.6.3",
     "split-grid": "^1.0.11",
     "toml": "^3.0.0",
