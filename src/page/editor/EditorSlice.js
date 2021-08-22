@@ -5,6 +5,7 @@ export const editorSlice = createSlice({
     initialState: {
         init: "",
         changed: "",
+        edit: true,
     },
     reducers: {
         save: (state) => {
@@ -13,12 +14,21 @@ export const editorSlice = createSlice({
         update: (state, changed) => {
             state.changed = changed.payload;
         },
+        pin: (state, overwrite) => {
+            state.init = overwrite.payload;
+            state.changed = overwrite.payload;
+            state.edit = false;
+        },
+        unpin: (state) => {
+            state.edit = true;
+        },
     },
 });
 
-export const { save, update } = editorSlice.actions;
+export const { save, update, pin, unpin } = editorSlice.actions;
 
 export const selectEditorInit = (state) => state.editor.init;
 export const selectEditorChanged = (state) => state.editor.changed;
+export const selectEdit = (state) => state.editor.edit;
 
 export default editorSlice.reducer;

@@ -20,13 +20,16 @@ export const storeDebuggerPage = createAction(StoreDebuggerPage, () => {
 });
 
 export const RestoreDebuggerPage = "RESTORE_DEBUGGER_PAGE";
-export const restoreDebuggerPage = createAction(RestoreDebuggerPage, (focus) => {
-    return {
-        payload: {
-            focus,
-        },
-    };
-});
+export const restoreDebuggerPage = createAction(
+    RestoreDebuggerPage,
+    (focus) => {
+        return {
+            payload: {
+                focus,
+            },
+        };
+    }
+);
 
 export const ChangeMainPage = "CHANGE_MAIN_PAGE";
 export const changeMainPage = createAction(ChangeMainPage, (focus) => {

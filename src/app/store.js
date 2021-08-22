@@ -3,6 +3,7 @@ import * as actor from "./actor";
 import editor from "../page/editor/EditorSlice";
 import topology from "../page/topology/TopologySlice";
 import text from "../page/text/TextSlice";
+import chart from "../page/chart/ChartSlice";
 import { MainTabs, DebuggerTabs } from "../types";
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
         editor,
         topology,
         text,
+        chart,
         isSmall: (state = false, action) => {
             switch (action.type) {
                 case actor.BrowserWidthChanged:
@@ -21,7 +23,10 @@ export const store = configureStore({
         main: (state = { focus: 0, page: "" }, action) => {
             switch (action.type) {
                 case actor.ChangeMainPage:
-                    return { focus: action.payload.focus, page: MainTabs[action.payload.focus] };
+                    return {
+                        focus: action.payload.focus,
+                        page: MainTabs[action.payload.focus],
+                    };
                 default:
                     return state;
             }
@@ -31,7 +36,13 @@ export const store = configureStore({
                 case actor.StoreDebuggerPage:
                     return { focus: -1, page: state.page };
                 case actor.RestoreDebuggerPage:
-                    return { focus: 0, page: action.payload.focus >= 0 ? DebuggerTabs[action.payload.focus] : state.page };
+                    return {
+                        focus: 0,
+                        page:
+                            action.payload.focus >= 0
+                                ? DebuggerTabs[action.payload.focus]
+                                : state.page,
+                    };
                 default:
                     return state;
             }

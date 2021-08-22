@@ -6,7 +6,8 @@ import { selectTextMessage } from "./TextSlice";
 export const Text = () => {
     const message = useSelector(selectTextMessage);
     return (
-        <div className={styles.text}> 
-            <h1> { message } </h1>
-        </div>);
+        <div className={styles.text}>
+            <h1> {message} </h1>
+        </div>
+    );
 };

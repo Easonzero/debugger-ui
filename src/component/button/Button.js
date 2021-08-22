@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-export const Button = ({ bold, icon, rightIcon, children, ...props }) => {
+export const Button = ({ red, bold, icon, rightIcon, children, ...props }) => {
     const c = [styles.container];
 
     if (bold) {
@@ -13,9 +13,12 @@ export const Button = ({ bold, icon, rightIcon, children, ...props }) => {
     if (rightIcon) {
         c.push(styles.hasRightIcon);
     }
+    if (red) {
+        c.push(styles.red);
+    }
 
     return (
-        <button className={styles.button} { ...props }>
+        <button className={styles.button} {...props}>
             <div className={c.join(" ")}>
                 {icon && <div className={styles.leftIcon}>{icon}</div>}
                 {children}

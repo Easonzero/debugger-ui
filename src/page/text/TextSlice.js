@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const textSlice = createSlice({
     name: "text",
     initialState: {
-        message: ""
+        message: "",
     },
     reducers: {
         update: (state, changed) => {

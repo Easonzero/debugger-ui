@@ -1,13 +1,11 @@
-.text {
+.container {
+    display: flex;
     height: 100%;
     width: 100%;
-    padding: 0.5em;
+    justify-content: flex-start;
+    flex-direction: column;
     border: 1px solid #dedede;
     border-top: none;
     background-color: #f9ffff;
-}
-
-.text h1 {
-    margin: 1em;
-    color: rgb(214, 122, 127);
+    padding: 0.5em;
 }

@@ -11,8 +11,8 @@ import { MainTabs, EDITOR, TOPOLOGY } from "./types";
 
 function App() {
     const dispatch = useDispatch();
-    const main = useSelector(state=>state.main);
-    const dbg = useSelector(state=>state.dbg);
+    const main = useSelector((state) => state.main);
+    const dbg = useSelector((state) => state.dbg);
 
     return (
         <div className="App">
@@ -24,8 +24,7 @@ function App() {
                         tabs={[
                             {
                                 label: MainTabs[EDITOR],
-                                onClick: () =>
-                                    dispatch(changeMainPage(EDITOR)),
+                                onClick: () => dispatch(changeMainPage(EDITOR)),
                             },
                             {
                                 label: MainTabs[TOPOLOGY],
@@ -50,7 +49,7 @@ function App() {
                             },
                         ]}
                         children={
-                            (dbg.focus >= 0) && (
+                            dbg.focus >= 0 && (
                                 <button
                                     className="tabClose"
                                     onClick={() =>
@@ -62,7 +61,7 @@ function App() {
                             )
                         }
                     />
-                    {(dbg.focus >= 0) && (
+                    {dbg.focus >= 0 && (
                         <div className="body">
                             <DebuggerSwitcher />
                         </div>

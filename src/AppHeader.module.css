@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.AppHeaderSet {
+.ButtonSet {
     margin-right: 0.5em;
 }
 
@@ -20,9 +20,16 @@ AppHeaderSet:last-child {
 
 .PopupContent {
     display: flex;
+    flex-flow: column;
     justify-content: center;
+    align-items: center;
     padding: 1.25em 0;
     font-size: 8px;
-    width: 100%;
-    height: 100%;
+    width: auto;
+}
+
+.spinner {
+    display: block;
+    height: 1em;
+    width: 1em;
 }
